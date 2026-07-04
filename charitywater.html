@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Water Game</title>
+
+    <link rel="stylesheet" href="chstyle.css">
+</head>
+
+<body>
+
+<!-- ================= START SCREEN ================= -->
+<section id="startScreen">
+
+    <h1>💧 Charity Water Mission</h1>
+
+    <p>
+        Deliver clean water to every villager before time runs out.
+        Complete levels, earn badges, and help more communities!
+    </p>
+
+    <button id="startBtn">Start Game</button>
+    <button id="instructionBtn">How To Play</button>
+
+</section>
+
+<!-- ================= HOW TO PLAY POPUP ================= -->
+<div id="instructions" class="popup hidden">
+
+    <h2>How To Play</h2>
+
+    <ul>
+        <li>Move using Arrow Keys or WASD.</li>
+        <li>Walk to each villager.</li>
+        <li>Give everyone a water bottle.</li>
+        <li>Finish before the timer ends.</li>
+        <li>Complete levels to earn badges.</li>
+    </ul>
+
+    <button id="closeInstruction">Close</button>
+</div>
+
+<!-- ================= GAME SCREEN ================= -->
+<section id="gameContainer" class="hidden">
+
+    <!-- HUD -->
+    <header>
+
+        <div class="hudItem">
+            <h3>Level</h3>
+            <p id="level">1</p>
+        </div>
+
+        <div class="hudItem">
+            <h3>Score</h3>
+            <p id="score">0</p>
+        </div>
+
+        <div class="hudItem">
+            <h3>Time</h3>
+            <p id="timer">60</p>
+        </div>
+
+        <div class="hudItem">
+            <h3>Badges</h3>
+            <p id="badgeCount">0</p>
+        </div>
+
+    </header>
+
+    <!-- GAME AREA -->
+    <main id="gameArea">
+
+        <div id="player">🚶</div>
+
+        <!-- villagers spawn here -->
+
+    </main>
+
+</section>
+
+<!-- ================= BADGE POPUP ================= -->
+<div id="badgePopup" class="popup hidden">
+
+    <h2>🏅 Badge Unlocked!</h2>
+
+    <h3 id="badgeName">First Drop</h3>
+
+    <button id="closeBadge">Continue</button>
+
+</div>
+
+<!-- ================= LEVEL COMPLETE ================= -->
+<div id="levelComplete" class="popup hidden">
+
+    <h2>🎉 Level Complete!</h2>
+
+    <p>Great job! You delivered water to everyone.</p>
+
+    <button id="nextLevel">Next Level</button>
+
+</div>
+
+<!-- ================= GAME OVER ================= -->
+<div id="gameOver" class="popup hidden">
+
+    <h2>⏰ Time's Up!</h2>
+
+    <p>Some villagers still need water.</p>
+
+    <button id="restart">Restart</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

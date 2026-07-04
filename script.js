@@ -1,0 +1,10 @@
+document.addEventListener("DOMContentLoaded",()=>{const $=id=>document.getElementById(id);const start=$("startBtn"),ins=$("instructionBtn"),close=$("closeInstruction"),ss=$("startScreen"),gc=$("gameContainer"),inst=$("instructions"),ga=$("gameArea"),p=$("player");let lvl=1,score=0,badges=0,time=60,px=50,py=50,keys={},vill=[],saved=0,timer;
+function hud(){$("level").textContent=lvl;$("score").textContent=score;$("badgeCount").textContent=badges;$("timer").textContent=time;}
+function spawn(){vill=[];saved=0;document.querySelectorAll(".villager").forEach(v=>v.remove());for(let i=0;i<lvl+4;i++){let d=document.createElement("div");d.className="villager";d.textContent="🧑";let x=Math.random()*(ga.clientWidth-60),y=Math.random()*(ga.clientHeight-60);d.style.left=x+"px";d.style.top=y+"px";ga.appendChild(d);vill.push({e:d,x,y,s:false});}}
+function startLevel(){time=Math.max(20,60-lvl*2);hud();spawn();clearInterval(timer);timer=setInterval(()=>{time--;hud();if(time<=0){clearInterval(timer);$("gameOver").classList.remove("hidden");}},1000);}
+start.onclick=()=>{ss.classList.add("hidden");gc.classList.remove("hidden");startLevel();};
+ins.onclick=()=>inst.classList.remove("hidden");close.onclick=()=>inst.classList.add("hidden");
+$("restart").onclick=()=>{lvl=1;score=0;badges=0;$("gameOver").classList.add("hidden");startLevel();};
+$("nextLevel").onclick=()=>{$("levelComplete").classList.add("hidden");lvl++;if(lvl%3==0)badges++;startLevel();};
+document.addEventListener("keydown",e=>keys[e.key.toLowerCase()]=true);document.addEventListener("keyup",e=>keys[e.key.toLowerCase()]=false);
+function loop(){if(keys["arrowleft"]||keys.a)px-=4;if(keys["arrowright"]||keys.d)px+=4;if(keys["arrowup"]||keys.w)py-=4;if(keys["arrowdown"]||keys.s)py+=4;p.style.left=px+"px";p.style.top=py+"px";vill.forEach(v=>{if(v.s)return;let dx=px-v.x,dy=py-v.y;if(Math.hypot(dx,dy)<35){v.s=true;v.e.textContent="💧";score+=10;saved++;hud();if(saved===vill.length){clearInterval(timer);$("levelComplete").classList.remove("hidden");}}});requestAnimationFrame(loop)}hud();loop();});
